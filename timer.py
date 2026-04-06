@@ -8,8 +8,10 @@ Requirements:
     sudo apt install espeak-ng  # Linux
 """
 
-import tkinter as tk
 import threading
+import time
+import tkinter as tk
+
 import pyttsx3
 
 
@@ -21,7 +23,7 @@ class VoiceTimer:
         self.root.configure(bg="#0f0f0f")
 
         self._running = False
-        self._elapsed = 0          # seconds, used in count-up
+        self._elapsed = 0  # seconds, used in count-up
         self._countdown_total = 0  # seconds for countdown
         self._mode = tk.StringVar(value="up")
 
@@ -196,7 +198,6 @@ class VoiceTimer:
 
     def _speak_worker(self):
         """Dedicated thread — pyttsx3 is not thread-safe, run it here only."""
-        import time
         while True:
             text = None
             with self._speak_lock:
