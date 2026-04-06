@@ -191,6 +191,7 @@ class VoiceTimer:
 
     def _enqueue_speak(self, text):
         with self._speak_lock:
+            self._speak_queue.clear()  # ← добавить эту строку
             self._speak_queue.append(text)
 
     def _speak_worker(self):
